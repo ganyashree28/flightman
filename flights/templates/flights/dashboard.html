@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h2>Flight Management Dashboard</h2>
+    <table class="flight-table">
+        <thead>
+            <tr>
+                <th>Flight Number</th>
+                <th>Airways Name</th>
+                <th>Departure Time</th>
+                <th>Price of Ticket</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in flights %}
+            <tr>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.airways_name }}</td>
+                <td>{{ flight.departure_time }}</td>
+                <td>${{ flight.ticket_price }}</td>
+                <td>
+                    <a href="/edit/{{ flight.id }}">Edit</a> | 
+                    <a href="/delete/{{ flight.id }}" onclick="return confirm('Are you sure?');">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

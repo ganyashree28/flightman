@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Flight Management System{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'flights/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+        <a class="navbar-brand">AeroTracker</a>
+           
+            <ul>
+                <li ="nav-home"><a href="{% url 'flight_list' %}" style="padding-left: 700px;">Home</a></li>
+                <li><a href="{% url 'flight_create' %}">Add Flight</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                 {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+             
+</nav>
+
+            </ul>
+        </nav>
+    </header>
+    
+
+    {% block content %}
+    <!-- Content overridden by child templates -->
+    {% endblock content %}
+
+    <footer>
+        <p>&copy; {{ current_year }} Flight Management System. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Script to get the current year for the footer
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+        });
+    </script>
+
+</body>
+</html>

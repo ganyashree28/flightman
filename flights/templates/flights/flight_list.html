@@ -1,0 +1,36 @@
+{% extends 'flights/base.html' %}
+
+{% block title %}Flight List - Flight Management System{% endblock title %}
+
+{% block content %}
+    <h2>Flight List</h2>
+    <table class="flight-table">
+        <thead>
+            <tr>
+                <th>Flight Number</th>
+                <th>Airways Name</th>
+                <th>Departure Time</th>
+                <th>Price of Ticket</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for flight in flights %}
+            <tr>
+                <td>{{ flight.flight_number }}</td>
+                <td>{{ flight.airways_name }}</td>
+                <td>{{ flight.departure_time }}</td>
+                <td>${{ flight.ticket_price }}</td>
+                <td>
+                    <a href="{% url 'flight_update' flight.id %}">Edit</a> |
+                    <a href="{% url 'flight_delete' flight.id %}" onclick="return confirm('Are you sure?');">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No flights available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

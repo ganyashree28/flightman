@@ -1,0 +1,27 @@
+{% extends 'flights/base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <h1>{{ form.instance.pk|yesno:"Edit,Add" }} Flight</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.flight_number.label_tag }}
+            {{ form.flight_number }}
+        </div>
+        <div class="form-group">
+            {{ form.airways_name.label_tag }}
+            {{ form.airways_name }}
+        </div>
+        <div class="form-group">
+            {{ form.departure_time.label_tag }}
+            {{ form.departure_time }}
+        </div>
+        <div class="form-group">
+            {{ form.ticket_price.label_tag }}
+            {{ form.ticket_price }}
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+{% endblock %}
